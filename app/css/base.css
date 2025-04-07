@@ -5,3 +5,9 @@
 @import "./utilities.css" layer(utilities);
 
 @import "../component/NavBar/style.css" layer(components);
+@import "../component/Movie/style.css" layer(components);
+@import "../component/MovieDetail/style.css" layer(components);
+
+header{
+    width: 100%;
+}

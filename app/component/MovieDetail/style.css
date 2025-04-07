@@ -1,0 +1,76 @@
+/* Définition de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fffcf1;
+    padding: 20px;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+.moviedetail__card__title{
+    font-size: 2rem;
+    text-align: start;
+    margin-bottom: 20px;
+}
+.moviedetail__header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 1.5rem;
+}
+
+.moviedetail__elements{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba;
+    font-family: var(--ff-sans);
+    gap: 0.5rem;
+    width: 20rem;
+    color: white;
+   
+}
+
+.moviedetail__description{
+    color: white;
+}
+
+.moviedetail__header__title{
+    font-size: 2rem;
+    
+    
+}
+
+.moviedetail_trailer {
+    width: 100%; /* La vidéo occupe toute la largeur de son conteneur */
+    max-width: 1200px; /* Augmentez la largeur maximale à 1200px */
+    height: auto; /* Conserve les proportions de la vidéo */
+    border-radius: 10px; /* Coins arrondis */
+    margin-bottom: 20px; /* Espace en bas */
+}
+.moviedetail__image{
+    max-width: 30rem;
+    border-radius: 1rem;
+}

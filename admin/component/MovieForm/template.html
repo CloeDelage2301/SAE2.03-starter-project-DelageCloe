@@ -1,0 +1,43 @@
+<div class="addMovie">
+    <div class="addMovie-content">
+        <h1 class="addMovie-content__title">Ajouter un film</h1>
+        <form class="addMovie-content__form">
+
+            <input required class="addMovie-content__form" type="text" name="name" id="name"
+                placeholder="Nom du film">
+            <input required class="addMovie-content__form" type="text" name="director" id="director"
+                placeholder="Nom du réalisateur">
+                <div class="addMovie-content__form1">
+            <input required class="addMovie-content__form1" type="number" name="year" id="year"
+                placeholder="Année de sortie" min="1900">
+                <input required class="addMovie-content__form1" type="number" name="length" id="length"
+                placeholder="Durée du film">
+            </div>
+            <input required class="addMovie-content__form" type="text" name="description" id="description"
+                placeholder="Description">
+                <select name="id_category">
+                   
+                    <option value="1">Action</option>
+                    <option value="2">Comédie</option>
+                    <option value="3">Drame</option>
+                    <option value="4">Science-fiction</option>
+                    <option value="5">Animation</option>
+                    <option value="6">Thriller</option>
+                    <option value="7">Horreur</option>
+                    <option value="8">Aventure</option>
+                    <option value="9">Fantaisie</option>
+                    <option value="10">Documentaire</option>
+                  </select>
+        
+            
+            <input required class="addMovie-content__form" type="text" name="image"  id="image"
+                placeholder="Nom du fichier de l'affiche">
+
+            <input required class="addMovie-content__form" type="text" name="trailer" id="trailer"
+                placeholder="URL de la bande annonce">
+
+            <input required class="addMovie-content__form" type="number" name="min_age" id="min_age"
+                placeholder="Age minimum">
+            <input onclick="{{handler}}" class="addMovie-content__form-button" type="button" value="Ajouter" name="todo">     </form>
+    </div>
+</div>

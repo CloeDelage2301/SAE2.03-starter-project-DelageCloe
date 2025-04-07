@@ -14,21 +14,52 @@
  * DBPWD : Mot de passe pour se connecter à la base de données.
  */
 define("HOST", "localhost");
-define("DBNAME", "morap01");
-define("DBLOGIN", "morap01");
-define("DBPWD", "morap01");
-
+define("DBNAME", "delage130");
+define("DBLOGIN", "delage130");
+define("DBPWD", "delage130");
+// hello
 
 function getAllMovies(){
-    // Connexion à la base de données
+
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    // Requête SQL pour récupérer le menu avec des paramètres
     $sql = "select id, name, image from Movie";
-    // Prépare la requête SQL
     $stmt = $cnx->prepare($sql);
-    // Exécute la requête SQL
     $stmt->execute();
-    // Récupère les résultats de la requête sous forme d'objets
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
-    return $res; // Retourne les résultats
+    return $res; 
 }
+
+
+function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
+
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $sql = "INSERT INTO Movie (name, year, length, description, director, id_category, image, trailer, min_age) 
+                VALUES (:name, :year, :length, :description, :director, :id_category, :image, :trailer, :min_age)";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':length', $length);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':director', $director);
+        $stmt->bindParam(':id_category', $id_category);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':trailer', $trailer);
+        $stmt->bindParam(':min_age', $min_age);
+
+        $stmt->execute();
+
+        return $stmt->rowCount();
+}
+
+function detailMovie($id) {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        $sql = "SELECT Movie.id, Movie.name, image, description, director, year, length, Category.name AS category, min_age, trailer 
+                FROM Movie 
+                INNER JOIN Category ON Movie.id_category = Category.id 
+                WHERE Movie.id = :id";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_OBJ);
+        return $res; 
+    }

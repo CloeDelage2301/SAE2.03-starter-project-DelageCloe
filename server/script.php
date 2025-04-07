@@ -1,4 +1,8 @@
+
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /** ARCHITECTURE PHP SERVEUR : Rôle du fichier script.php
  * 
  * Ce fichier est celui à qui on adresse toutes les requêtes HTTP.
@@ -52,7 +56,17 @@ if ( isset($_REQUEST['todo']) ){
   // peut s'écrire aussi avec des if/else
   switch($todo){
 
-    case 'readmovies':
+
+    case 'readMoviedetails': // on veut afficher les détails d'un film
+      $data = detailController(); 
+      break;
+  
+    case 'addMovie':
+      $data = addController();
+    break;
+
+    
+    case'readmovies':
       $data = readMoviesController();
       break;
 
