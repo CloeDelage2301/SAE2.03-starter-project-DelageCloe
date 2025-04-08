@@ -5,7 +5,7 @@ let MovieDetail = {};
 
 MovieDetail.format = function (movie) {
   let movieHtml = template;
-  
+
   movieHtml = movieHtml.replace("{{name}}", movie.name);
   movieHtml = movieHtml.replace("{{year}}", movie.year);
   movieHtml = movieHtml.replace("{{length}}", movie.length);

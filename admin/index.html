@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/base.css" />
-  <link rel="stylesheet" href="./component/MovieForm/style.css" />
+
   
 </head>
 
@@ -18,30 +18,30 @@
     import { Log } from "./component/Log/script.js";
     import { MovieForm } from "./component/MovieForm/script.js";
     import { DataMovie } from "./data/dataMovie.js";
+
+
     window.C = {};
 
-  C.handlerAddMovie = async function () {
-    let form = document.querySelector(".addMovie-content__form");
-    let fd = new FormData(form);
-    let isEmpty = false;
-    form.querySelectorAll("input").forEach((input) => {
-      if (!input.value.trim()) {
-        isEmpty = true;
+    // Itération 2
+    C.handlerAddMovie = async function () {
+      let form = document.querySelector(".addMovie-content__form");
+      let fd = new FormData(form);
+      let isEmpty = false;
+      let inputs = form.querySelectorAll("input");
+      for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value.trim()) {
+          isEmpty = true;
+          break;
+        }
       }
-    });
-    if (isEmpty) {
-      V.renderLog("Veuillez remplir tous les champs");
-      return;
-    }
-    
-    let res = await DataMovie.addMovie(fd);
-    if (res.success){
-      V.renderLog("Le film a été ajouté avec succès");
-    } else {
-      V.renderLog("Erreur lors de l'ajout du film");
-    }
-  }
+      if (isEmpty) {
+        V.renderLog("Veuillez remplir tous les champs");
+        return;
+      }
 
+      let res = await DataMovie.addMovie(fd);
+      V.renderLog(res.success ? "Le film a été ajouté avec succès" : "Erreur lors de l'ajout du film");
+    };
 
     C.start = function () {
       V.renderLog("Démarrage de l'application");
@@ -55,6 +55,7 @@
       content.innerHTML = Log.format(txt);
     };
 
+    // Itération 2
     V.renderForm = function (handler) {
       let content = document.querySelector("#content");
       content.innerHTML = MovieForm.format(handler);

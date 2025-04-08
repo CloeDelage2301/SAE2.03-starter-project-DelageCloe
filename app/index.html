@@ -79,7 +79,11 @@
 
       V.renderMovieCategory = function (data) {
         let content = document.querySelector("#content");
-        content.innerHTML = data.map(MovieCategory.format).join("");
+        let html = "";
+        for (let i = 0; i < data.length; i++) {
+          html += MovieCategory.format(data[i]);
+        }
+        content.innerHTML = html;
       };
 
       C.start();

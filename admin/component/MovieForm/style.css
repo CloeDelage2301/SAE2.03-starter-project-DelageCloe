@@ -1,72 +1,53 @@
-body {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  background-color: #5F4e4A;
-  font-family: var(--ff-sans);
-  min-height: 100vh;
-  padding: 2rem;
-}
-
-
-
-
-.addMovie-content__form1{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
- gap: 0.5rem;
-}
-
 .addMovie-content__title {
+  margin-bottom: 15px;
+  color: var(--color-primary);
   font-size: 1.3em;
   font-weight: bold;
-  margin-bottom: 15px;
-  color: #D6ADAD; 
   font-family: var(--ff-sans);
 }
 
+.addMovie-content__form1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
 
 .addMovie-content__form input[type="text"],
 .addMovie-content__form input[type="number"],
-.addMovie-content__form select{
+.addMovie-content__form select {
   width: 100%;
   padding: 12px;
   margin: 6px 0;
-  border: 1px solid #D6ADAD;
+  border: 1px solid var(--color-primary);
   border-radius: 1rem;
+  background: var(--color-bg);
+  box-shadow: 0 0 5pxvar (--color-primary);
+  color: var(--color-primary);
   font-size: 1em;
-  background:  #5F4e4A;
-  color: #D6ADAD;
-  box-shadow: 0 0 5px#D6ADAD;
 }
 
-
-.addMovie-content__form input[type="text"]:focus ,
+.addMovie-content__form input[type="text"]:focus,
 .addMovie-content__form input[type="number"]:focus,
-.addMovie-content__form select:focus{
+.addMovie-content__form select:focus {
   outline: none;
-  
 }
 
 .addMovie-content__form input[type="button"] {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
-  background: #D6ADAD;
+  background: #d6adad;
   color: #fffcf1;
   border: none;
   border-radius: 1rem;
   cursor: pointer;
   font-size: 1em;
   font-weight: bold;
- 
 }
 
 .addMovie-content__form input[type="button"]:hover {
   background: #b38181;
 }
-
 
 @media (min-width: 768px) {
   .addMovie-content {

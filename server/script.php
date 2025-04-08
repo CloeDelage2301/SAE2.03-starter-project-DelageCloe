@@ -3,38 +3,10 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-/** ARCHITECTURE PHP SERVEUR : Rôle du fichier script.php
- * 
- * Ce fichier est celui à qui on adresse toutes les requêtes HTTP.
- * Pour être valide, on décide que chaque requête doit contenir un paramètre 'todo'.
- * C'est un choix d'implémentation, on aurait pu choisir un autre nom de paramètre.
- * L'interprétation de la requête se fait en fonction de la valeur du paramètre 'todo'.
- * Selon cette valeur, on fait appelle à la fonction de contrôleur (voir controller.php)
- * appropriée pour traiter la requête HTTP et produire la réponse HTTP attendue..
- * 
- * Pourquoi faire comme ça ?
- * 
- *  En ajoutant un paramètre 'todo' dans la requête, on a un seul paramètre à regarder pour déterminer l'action à effectuer.
- *  Sinon il faudrait toujours analyser tous les paramètres de la requête pour déterminer l'action à effectuer.
- *  Et dans une véritable application il peut y avoir énormément de paramètres, ce qui deviendrait compliqué et illisible.
- * 
- */
 
-/**
- * Inclusion du fichier controller.php.
- * 
- * Il contient les fonctions nécessaires pour traiter chaque type de requête
- * et définir la réponnse à renvoyer au client.
- */
 require("controller.php");
 
-/**
- * Vérifie si la variable 'todo' est définie dans la requête.
- * 
- * Cette condition permet de déterminer si un paramètre 'todo' a été envoyé
- * via une requête HTTP. 
- * Si ce paramètre est présent, le code à l'intérieur du bloc conditionnel sera exécuté.
- */
+
 if ( isset($_REQUEST['todo']) ){
 
   /**
@@ -60,7 +32,7 @@ if ( isset($_REQUEST['todo']) ){
       $data = readMovieCategory();
       break;
 
-    case 'readMoviedetails': // on veut afficher les détails d'un film
+    case 'readMoviedetails': 
       $data = detailController(); 
       break;
   
@@ -74,9 +46,9 @@ if ( isset($_REQUEST['todo']) ){
       break;
 
 
-    default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
+    default: 
       echo json_encode('[error] Unknown todo value');
-      http_response_code(400); // 400 == "Bad request"
+      http_response_code(400); 
       exit();
   }
 

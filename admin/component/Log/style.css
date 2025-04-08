@@ -5,7 +5,7 @@
   width: 30rem;
   height: 8rem;
   padding: 1rem 1rem 1rem 1.5rem;
-
+  margin: 1rem;
   background-color:var(--color-bg);
   border-style: solid;
   border-radius: 1.5rem;
@@ -17,6 +17,7 @@
     font-size: bold;
     color: var(--color-primary);
     overflow-y: scroll;
+    list-style: none;
     .last {
       animation: fondu-en-entree 1s ease-in-out;
     }
