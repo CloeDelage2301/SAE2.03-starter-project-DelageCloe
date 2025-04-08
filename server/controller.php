@@ -51,13 +51,18 @@ function addController() {
 }
 
 function detailController() {
- 
 
     $id = $_REQUEST['id'];
-  
     $movie = detailMovie($id);
-  
     return $movie;
-
     exit();
 }
+
+
+function readMovieCategory() {
+    $categories = getMoviesCategory();
+    return $categories ? $categories : false;
+  }
+
+
+

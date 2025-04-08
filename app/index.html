@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./component/NavBar/style.css" />
+    <link rel="stylesheet" href="./component/MovieCategory/style.css" />
+   
     
  
   
@@ -25,21 +27,27 @@
       import { DataMovie } from "./data/dataMovie.js";
       import { Movie } from "./component/Movie/script.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
       
       
       
       window.C = {};
 
       
-
+      C.handlerAbout = function () {
+        alert(
+          "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
+        );
+      };
+      
       C.start = function () {
         V.renderNavBar("C.handlerMovies()");
         C.getAllMovies();
       };
 
       C.getAllMovies = async function () {
-        let data = await DataMovie.requestMovies();
-        V.renderMovie(data);
+        let data = await DataMovie.requestMovieCategory();
+        V.renderMovieCategory(data);
       };
       
       C.handlerDetail = async function (id) {
@@ -50,7 +58,7 @@
         C.getAllMovies(); 
       };
      
-
+     
 
       window.V = {};
 
@@ -67,6 +75,11 @@
       V.renderMovieDetail = function (data) {
         let content = document.querySelector("#content");
         content.innerHTML = MovieDetail.format(data);
+      };
+
+      V.renderMovieCategory = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = data.map(MovieCategory.format).join("");
       };
 
       C.start();

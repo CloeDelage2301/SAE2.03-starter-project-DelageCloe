@@ -6,15 +6,16 @@
   height: 8rem;
   padding: 1rem 1rem 1rem 1.5rem;
 
-  background-color:#89796D;
+  background-color:var(--color-bg);
   border-style: solid;
   border-radius: 1.5rem;
-  border-color: #89796D;
+  border-color: var(--color-bg);
   border-width: 1px;
   overflow: hidden;
+  box-shadow: 0 0 8px var(--color-primary);
   .log__list {
     font-size: bold;
-    color: #fffcf1;
+    color: var(--color-primary);
     overflow-y: scroll;
     .last {
       animation: fondu-en-entree 1s ease-in-out;

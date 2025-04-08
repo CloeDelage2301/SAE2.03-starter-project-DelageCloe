@@ -1,0 +1,36 @@
+
+.movie-category {
+    width: 100rem;
+    margin-bottom: 60px;
+    padding: 30px 20px;
+    border-radius: 16px;
+  
+    box-shadow: 0 8px 20px var(--color-primary);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.movie-category:hover {
+  transform: scale(1.01);
+}
+
+
+.movie-category__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--color-primary);
+  text-align: left;
+  padding-left: 10px;
+  font-size: 2rem;
+
+
+  
+}
+.movies {
+  display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+}
+

@@ -1,10 +1,10 @@
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
   color: rgb(207, 183, 154);
-  background-color: #89796D;
+  background-color: #D6ADAD;
   border-radius: 1rem;
   position: sticky;
   z-index: 0;
@@ -18,7 +18,7 @@
     cursor: pointer;
     transition: text-underline-offset 0.2s ease-in-out;
     list-style: none;
-    color: #fffaeb;
+    color: #5F4E4A;
     font-family: var(--ff-sans);
     font-weight: bold;
     &:hover {
