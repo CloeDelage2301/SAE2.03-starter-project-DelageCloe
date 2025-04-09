@@ -46,7 +46,10 @@ body {
   font-family: var(--ff-sans);
   min-height: 100vh;
   padding: 2rem;
+  gap: 2rem;
+  
 }
+
 
 h1,
 h2,

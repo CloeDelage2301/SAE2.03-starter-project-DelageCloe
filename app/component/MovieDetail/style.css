@@ -5,84 +5,55 @@
   align-items: center;
   border-radius: 1rem;
   padding: 1rem;
-  gap: 1rem;
-  width: 90rem;
-  box-shadow: 0 0 8px var(--color-primary);
-}
-
-.moviedetail:hover {
-  box-shadow: 0 0 16px var(--color-primary);
-  transition: box-shadow 0.3s ease-in-out;
+  width: 90%; /* La carte occupe 90% de la largeur de son conteneur */
+  max-width: 1000px; /* Limite la largeur maximale */
+  box-shadow: 0 0 8px hsl(0, 0%, 41%);
 }
 .moviedetail__image {
-  width: 50rem;
-  height: 50rem;
+  width: 40rem; 
+  height: 40rem; 
   border-radius: 1rem;
   object-fit: cover;
+ 
+}
+.moviedetail__card {
+  display: flex;
+  flex-direction: column; /* Les éléments s'empilent verticalement */
+  gap: 1rem;
+  padding-top: 1rem;
 }
 
-.moviedetail__card {
-  width: 100%;
+.moviedetail__card__header {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  justify-content: space-between;
   gap: 1rem;
 }
 
-.moviedetail__card__hearder {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.moviedetail__header {
-  display: flex;
-  flex-direction: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 20px;
-  gap: 1.5rem;
-}
 .moviedetail__card__title {
-  margin-bottom: 20px;
-  text-align: start;
+  font-size: 1.5rem; /* Taille du titre relative */
   color: var(--color-primary);
-  font-size: 2rem;
+  text-align: center;
 }
 
 .moviedetail__card__headerelements {
   display: flex;
   gap: 1rem;
-  width: 20rem;
-  border-radius: 1rem;
-  font-family: var(--ff-sans);
-  color: white;
-  letter-spacing: 0.05rem;
-  font-family: var(--ff-sans);
-  font-weight: bold;
-}
-.moviedetail__year {
-  display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 2rem;
-  background-color: var(--color-primary);
-  border-radius: 0.5rem;
-  letter-spacing: 0.05rem;
-  color: var(--color-bg);
-  font-family: var(--ff-sans);
-  font-weight: bold;
+  flex-wrap: wrap; /* Les éléments passent à la ligne si nécessaire */
 }
 
+.moviedetail__year,
 .moviedetail__length {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  height: 2rem;
+  padding: 0.5rem;
   background-color: var(--color-primary);
   border-radius: 0.5rem;
-  letter-spacing: 0.05rem;
   color: var(--color-bg);
-  font-family: var(--ff-sans);
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -90,20 +61,22 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-radius: 1rem;
   color: white;
-  letter-spacing: 0.05rem;
-  font-family: var(--ff-sans);
+  font-size: 1rem;
   font-weight: bold;
 }
 
-
 .moviedetail__trailer {
-  margin-top: 2rem;
-  width: 100%;
-  height: 20rem;
-  border-radius: 1rem;
-  border: none;
+  width: 100%; /* La vidéo occupe toute la largeur disponible */
+  max-width: 40rem; /* Limite la largeur maximale de la vidéo */
+  height: 22.5rem; /* Définit une hauteur proportionnelle pour un ratio 16:9 */
+  border-radius: 1rem; /* Coins arrondis */
+  border: none; /* Supprime les bordures */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour un effet esthétique */
+  margin-top: 1rem; /* Ajoute un espace au-dessus de la vidéo */
+  object-fit: cover; 
+  display: block; /* Assure que la vidéo est un bloc */
+   
 }
 
 @media screen and (min-width: 100rem) {
@@ -111,23 +84,26 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 2rem;
+   max-width: 2000px;
+   max-height: 50rem;
   }
   .moviedetail__card {
-    width: 100%;
+    height: 40rem;
     display: flex;
-    gap: 3.3rem;
+    gap: 3rem;
   }
  
   .moviedetail__trailer {
     width: 30rem;
     height: 15rem;
+   
   }
 
   .moviedetail__elements {
     font-size: 1.4rem;
   }
   .moviedetail__card__title {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 }

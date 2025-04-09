@@ -28,6 +28,10 @@ if ( isset($_REQUEST['todo']) ){
   // peut s'écrire aussi avec des if/else
   switch($todo){
 
+    case 'addProfiles':
+      $data =  addprofilController();
+      break;
+
     case'readMovieCategory':
       $data = readMovieCategory();
       break;

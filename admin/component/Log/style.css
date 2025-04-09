@@ -18,6 +18,7 @@
     color: var(--color-primary);
     overflow-y: scroll;
     list-style: none;
+    font-weight: bold;
     .last {
       animation: fondu-en-entree 1s ease-in-out;
     }
