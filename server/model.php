@@ -19,16 +19,20 @@ define("DBLOGIN", "delage130");
 define("DBPWD", "delage130");
 // hello
 
-function getAllMovies(){
+function getAllMovies($age){
 
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "select id, name, image from Movie";
+    $sql = "SELECT Movie.id, Movie.name, image, min_age FROM Movie WHERE min_age <= :age";
     $stmt = $cnx->prepare($sql);
+     $stmt->bindParam(':age', $age);
     $stmt->execute();
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
     return $res; 
-}
 
+    
+}
+  
+    
 
 function addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age) {
 
@@ -45,7 +49,6 @@ function addMovie($name, $year, $length, $description, $director, $id_category, 
         $stmt->bindParam(':image', $image);
         $stmt->bindParam(':trailer', $trailer);
         $stmt->bindParam(':min_age', $min_age);
-
         $stmt->execute();
 
         return $stmt->rowCount();
@@ -103,8 +106,7 @@ function detailMovie($id) {
     
         return array_values($category); // Retourne un tableau indexé
     }
-
-    function addProfiles($nom, $avatar, $age) {
+    function addProfil($nom, $avatar, $age) {
        
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
         $sql = "INSERT INTO Profil (nom, avatar, age) 
@@ -119,3 +121,13 @@ function detailMovie($id) {
         $res = $stmt->rowCount();
         return $res;
 }
+
+function getAllProfil(){
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "select id, nom, avatar from Profil";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $res; 
+}
+

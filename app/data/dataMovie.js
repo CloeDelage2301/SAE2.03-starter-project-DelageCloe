@@ -3,8 +3,8 @@ let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageC
 let DataMovie = {};
 
 // Itération 1
-DataMovie.requestMovies = async function () {
-  let answer = await fetch(HOST_URL + "/server/script.php?todo=readmovies" );
+DataMovie.requestMovies = async function (age) {
+  let answer = await fetch(HOST_URL + "/server/script.php?todo=readmovies&id"+ age );
   let movies = await answer.json();
  
   return movies;
@@ -24,6 +24,13 @@ DataMovie.requestMovieCategory = async function () {
   return categories;
 };
 export {DataMovie};
+
+// DataMovie.requestMovieProfil = async function(age){
+//     let answer = await fetch(HOST_URL + "/server/script.php?todo=movieProfil&id=" + age );
+//     let profil = await answer.json();
+//     return profil;
+// }
+// export {DataMovie};
 
 
 

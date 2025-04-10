@@ -18,52 +18,67 @@
   <script type="module">
     import { Log } from "./component/Log/script.js";
     import { MovieForm } from "./component/MovieForm/script.js";
-    import { ProfilForm } from "./component/ProfilForm/script.js";
     import { DataMovie } from "./data/dataMovie.js";
-    import { DataProfiladd } from "./data/dataProfil.js";
+    import { ProfilForm } from "./component/ProfilForm/script.js";
+    import { DataProfil } from "./data/dataProfil.js";
 
 
     window.C = {};
 
     // Itération 2
     C.handlerAddMovie = async function () {
-      let form = document.querySelector(".addMovie-content__form");
-      let fd = new FormData(form);
-      let isEmpty = false;
-      let inputs = form.querySelectorAll("input");
-      for (let i = 0; i < inputs.length; i++) {
+    let form = document.querySelector(".addMovie-content__form");
+    let fd = new FormData(form);
+
+    let isEmpty = false;
+    let inputs = form.querySelectorAll("input");
+    for (let i = 0; i < inputs.length; i++) {
         if (!inputs[i].value.trim()) {
-          isEmpty = true;
-          break;
+            isEmpty = true;
         }
-      }
-      if (isEmpty) {
+    }
+
+    if (isEmpty) {
         V.renderLog("Veuillez remplir tous les champs");
         return;
-      }
+    }
 
-      let res = await DataMovie.addMovie(fd);
-      V.renderLog(res.success ? "Le film a été ajouté avec succès" : "Erreur lors de l'ajout du film");
-    };
+    let res = await DataMovie.addMovie(fd);
 
+    if (res.success) {
+        V.renderLog("Le film a été ajouté avec succès.");
+    } else {
+        V.renderLog("Erreur lors de l'ajout du film");
+    }
+};
 
-    // Itération 4
-    C.handlerAddProfil = async function () {
-    let form = document.querySelector(".addProfil__form");
+// Itération 5
+C.handlerAddProfil = async function () {
+    let form = document.querySelector(".addProfiles__form");
     let fd = new FormData(form);
     let isEmpty = false;
-    form.querySelectorAll("input").forEach((input) => {
-      if (!input.value.trim()) {
-        isEmpty = true;
-      }
-    });
-    if (isEmpty) {
-      V.renderLog("Veuillez remplir tous les champs");
-      return;
+    let inputs = form.querySelectorAll("input");
+    for (let i = 0; i < inputs.length; i++) {
+        if (!inputs[i].value.trim()) {
+            isEmpty = true;
+        }
     }
+
+    if (isEmpty) {
+        V.renderLog("Veuillez remplir tous les champs");
+        return;
+    }
+
     let res = await DataProfil.addProfil(fd);
-    V.renderLog(res.success ? "Le film a été ajouté avec succès" : "Erreur lors de l'ajout du film");
+    if (res.success) {
+        V.renderLog("Le profil a été ajouté avec succès");
+    } else {
+        V.renderLog("Erreur lors de l'ajout du profil");
+    }
 };
+
+
+
 
 
     C.start = function () {
@@ -85,6 +100,7 @@
       content.innerHTML = MovieForm.format(handler);
     };
 
+    // Itération 5
     V.renderProfilForm = function (handler) {
       let content = document.querySelector("#form");
       content.innerHTML = ProfilForm.format(handler);

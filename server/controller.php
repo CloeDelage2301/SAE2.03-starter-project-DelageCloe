@@ -21,10 +21,20 @@
 require("model.php");
 
 function readMoviesController(){
-    $movies = getAllMovies();
-    return $movies;
+    $age = $_REQUEST['age'];
+    if ($age == null) {
+        return false;
+    }
+    return getAllMovies($age);
 }
 
+function movieProfilController() {
+    $age = $_REQUEST['age'];
+    if ($age == null) {
+        return false;
+    }
+    return getMovieProfil($age);
+}
 function addController() {
     header('Content-Type: application/json');
 
@@ -61,7 +71,7 @@ function readMovieCategory() {
     return $categories ? $categories : false;
   }
 
-  function addprofilController() {
+  function profilController() {
 
     // Vérifiez que les paramètres sont définis
     if (!isset($_REQUEST['nom']) || !isset($_REQUEST['avatar']) || !isset($_REQUEST['age'])) {
@@ -79,7 +89,7 @@ function readMovieCategory() {
         exit();
     }
 
-    $ok = addProfiles($nom, $avatar, $age);
+    $ok = addProfil($nom, $avatar, $age);
 
     if ($ok != 0) {
         echo json_encode(["success" => true, "message" => "Profil ajouté à la base de donnée"]);
@@ -89,6 +99,7 @@ function readMovieCategory() {
 
     exit();
 }
-
-
-
+function readProfilController() {
+    $profil = getAllProfil();
+    return $profil;
+}

@@ -28,20 +28,16 @@
       import { Movie } from "./component/Movie/script.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfil } from "./data/dataProfil.js";
       
       
       
       window.C = {};
 
-      
-      C.handlerAbout = function () {
-        alert(
-          "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
-        );
-      };
-      
-      C.start = function () {
-        V.renderNavBar("C.handlerMovies()");
+    
+      C.start = async function () {
+        let profils = await DataProfil.requestProfil();
+        V.renderNavBar("C.handlerMovies()","C.handlerProfil()", profils);
         C.getAllMovies();
       };
 
@@ -58,13 +54,32 @@
         C.getAllMovies(); 
       };
      
+      C.handlerProfil = async function () {
+        const select = document.querySelector("#profil-select");
+        const selectedOption = select.selectedOptions[0];
+        const profileName = selectedOption.value;
+        const dob = selectedOption.getAttribute("data-dob");
+        const imageFilename = selectedOption.getAttribute("data-img");
+        const picture = document.querySelector("#profil-image");
+        const base = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/server/images/";
+
+        // Met à jour l'image de profil
+        picture.src = base + imageFilename;
+
+        // Récupère les films pour le profil sélectionné
+        let data = await DataMovie.requestMovieCategory(); // Remplacez par une fonction adaptée si nécessaire
+        console.log("Films pour le profil sélectionné :", data);
+
+        // Affiche les films
+        V.renderMovieCategory(data);
+      };
      
 
       window.V = {};
 
-      V.renderNavBar = function (hAbout) {
+      V.renderNavBar = function (handlerMovies,handlerProfil, profils) {
         let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
+        header.innerHTML = NavBar.format(handlerMovies,handlerProfil, profils);
       };
 
       V.renderMovie = function (data) {

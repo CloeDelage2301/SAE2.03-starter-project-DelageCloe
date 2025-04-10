@@ -1,11 +1,13 @@
 .movie-category {
-  width: 100rem;
+
   margin-bottom: 60px;
   padding: 30px 20px;
   border-radius: 16px;
   box-shadow: 0 8px 20px hsl(0, 0%, 41%);
   box-sizing: border-box;
   transition: transform 0.3s ease;
+
+  
 }
 
 .movie-category:hover {
@@ -16,24 +18,25 @@
   margin-bottom: 25px;
   padding-left: 10px;
   color: var(--color-primary);
-  text-align: left;
+  text-align: center;
   font-weight: 700;
   font-size: 2rem;
 }
 .movies {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   gap: 16px;
   justify-content: center;
+
 }
 
 
-@media (max-width: 100rem) {
+
+@media (min-width: 100rem) {
 
   .movie-category__title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   text-align: left;
   }
 
   
