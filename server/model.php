@@ -69,7 +69,7 @@ function detailMovie($id) {
 
 
 
-    function getMoviesCategory() {
+    function getMoviesCategory($age) {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
     
         // Requête SQL pour récupérer les films groupés par catégorie
@@ -80,11 +80,13 @@ function detailMovie($id) {
                     Movie.name AS movie_name, 
                     Movie.image AS movie_image
                 FROM Movie
-                JOIN Category ON Movie.id_category = Category.id
-                ORDER BY Category.name, Movie.name";
+             INNER JOIN Category ON Movie.id_category = Category.id
+            WHERE Movie.min_age <= :age";
     
-        $stmt = $cnx->query($sql);
-        $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':age', $age, PDO::PARAM_INT);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
     
         // Regrouper les films par catégorie
         $category = [];
@@ -94,13 +96,14 @@ function detailMovie($id) {
             if (!isset($category[$row->category_id])) {
                 $category[$row->category_id] = [
                     "name" => $row->category_name,
-                    "movie" => []
+                    "movies" => []
                 ];
             }
             $category[$row->category_id]["movies"][] = [
                 "id" => $row->movie_id,
                 "name" => $row->movie_name,
                 "image" => $row->movie_image
+                
             ];
         }
     
@@ -124,7 +127,7 @@ function detailMovie($id) {
 
 function getAllProfil(){
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "select id, nom, avatar from Profil";
+    $sql = "select id, nom, avatar, age from Profil";
     $stmt = $cnx->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);

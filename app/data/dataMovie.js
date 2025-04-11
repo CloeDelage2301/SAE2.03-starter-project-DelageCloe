@@ -3,8 +3,8 @@ let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageC
 let DataMovie = {};
 
 // Itération 1
-DataMovie.requestMovies = async function (age) {
-  let answer = await fetch(HOST_URL + "/server/script.php?todo=readmovies&id"+ age );
+DataMovie.requestMovies = async function (age = 99) {
+  let answer = await fetch(HOST_URL + `/server/script.php?todo=readMovieCategory&age=${age}`);
   let movies = await answer.json();
  
   return movies;

@@ -21,20 +21,10 @@
 require("model.php");
 
 function readMoviesController(){
-    $age = $_REQUEST['age'];
-    if ($age == null) {
-        return false;
-    }
-    return getAllMovies($age);
+    $movies = getAllMovies(); 
+    return $movies;
 }
 
-function movieProfilController() {
-    $age = $_REQUEST['age'];
-    if ($age == null) {
-        return false;
-    }
-    return getMovieProfil($age);
-}
 function addController() {
     header('Content-Type: application/json');
 
@@ -66,40 +56,42 @@ function detailController() {
 }
 
 
-function readMovieCategory() {
-    $categories = getMoviesCategory();
-    return $categories ? $categories : false;
-  }
 
-  function profilController() {
-
+function profilController() {
+    
     // Vérifiez que les paramètres sont définis
     if (!isset($_REQUEST['nom']) || !isset($_REQUEST['avatar']) || !isset($_REQUEST['age'])) {
         echo json_encode(["success" => false, "message" => "Paramètres manquants"]);
         exit();
     }
-
+    
     $nom = $_REQUEST['nom'];
     $avatar = $_REQUEST['avatar'];
     $age = $_REQUEST['age'];
-
+    
     // Vérifiez que l'âge est un entier valide
     if ( $age <= 0) {
         echo json_encode(["success" => false, "message" => "Âge invalide"]);
         exit();
     }
-
+    
     $ok = addProfil($nom, $avatar, $age);
-
+    
     if ($ok != 0) {
         echo json_encode(["success" => true, "message" => "Profil ajouté à la base de donnée"]);
     } else {
         echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout du Profil"]);
     }
-
+    
     exit();
 }
-function readProfilController() {
+function readMovieCategory() {
+    $age = isset($_REQUEST['age']) ? $_REQUEST['age'] : 0; 
+    $category = getMoviesCategory($age);
+    return $category ? $category : false;
+  }
+
+  function readProfilController() {
     $profil = getAllProfil();
     return $profil;
-}
+  }

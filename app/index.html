@@ -34,15 +34,22 @@
       
       window.C = {};
 
+      C.profile = null;
     
       C.start = async function () {
         let profils = await DataProfil.requestProfil();
         V.renderNavBar("C.handlerMovies()","C.handlerProfil()", profils);
         C.getAllMovies();
+        C.getCategories();
       };
 
-      C.getAllMovies = async function () {
-        let data = await DataMovie.requestMovieCategory();
+      C.getAllMovies = async function (age) {
+        let data = await DataMovie.requestMovies(age);
+        if (!Array.isArray(data) || data.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film disponible pour votre tranche d'âge.</p>";
+          return;
+        }
         V.renderMovieCategory(data);
       };
       
@@ -50,29 +57,35 @@
         let data = await DataMovie.requestMovieDetails(id);
         V.renderMovieDetail(data);
       };
-      C.handlerMovies = function () {
-        C.getAllMovies(); 
+
+      C.getCategories = async function () {
+        if (!C.profile) {
+          document.querySelector("#content").innerHTML =
+            "<p>Veuillez sélectionner un profil.</p>";
+          return;
+        }
+        let categories = await DataMovie.requestMovies(99);
+        if (!Array.isArray(categories) || categories.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucune catégorie disponible pour votre tranche d'âge.</p>";
+          return;
+        }
+        V.renderMovieCategory(categories); 
       };
-     
+
       C.handlerProfil = async function () {
-        const select = document.querySelector("#profil-select");
-        const selectedOption = select.selectedOptions[0];
-        const profileName = selectedOption.value;
-        const dob = selectedOption.getAttribute("data-dob");
-        const imageFilename = selectedOption.getAttribute("data-img");
-        const picture = document.querySelector("#profil-image");
-        const base = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/server/images/";
+      const select = document.querySelector("#profile-select");
+      let val = select.options[select.selectedIndex].value;
+      let dataProfile = await DataProfil.readOne(val);
+      C.profile = dataProfile[select.selectedIndex];
+      console.log(C.profile);
+      const profileAvatar = document.querySelector("#profile-image");
+      if (profileAvatar && C.profile.avatar) {
+        profileAvatar.src = `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/server/images/${C.profile.avatar}`;
+       }
 
-        // Met à jour l'image de profil
-        picture.src = base + imageFilename;
-
-        // Récupère les films pour le profil sélectionné
-        let data = await DataMovie.requestMovieCategory(); // Remplacez par une fonction adaptée si nécessaire
-        console.log("Films pour le profil sélectionné :", data);
-
-        // Affiche les films
-        V.renderMovieCategory(data);
-      };
+    C.getAllMovies(C.profile.age);
+};
      
 
       window.V = {};
@@ -80,6 +93,7 @@
       V.renderNavBar = function (handlerMovies,handlerProfil, profils) {
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(handlerMovies,handlerProfil, profils);
+
       };
 
       V.renderMovie = function (data) {
@@ -94,11 +108,11 @@
 
       V.renderMovieCategory = function (data) {
         let content = document.querySelector("#content");
-        let html = "";
-        for (let i = 0; i < data.length; i++) {
-          html += MovieCategory.format(data[i]);
+        let formattedContent = "";
+        for (let category of data) {
+          formattedContent += MovieCategory.format(category);
         }
-        content.innerHTML = html;
+        content.innerHTML = formattedContent;
       };
 
       C.start();
