@@ -95,3 +95,17 @@ function readMovieCategory() {
     $profil = getAllProfil();
     return $profil;
   }
+
+  function updateProfileController() {
+    $id = $_REQUEST['id'] ?? null;
+    $nom = $_REQUEST['nom'] ?? null;
+    $avatar = $_REQUEST['avatar'] ?? null;
+    $age = $_REQUEST['age'] ?? null;
+
+    if (empty($id) || empty($nom) || empty($age)) {
+        return "Erreur : Tous les champs obligatoires doivent être remplis.";
+    }
+
+    $ok = updateProfile($id, $nom, $avatar, $age);
+    return $ok ? "Le profil a été modifié avec succès." : "Erreur lors de la modification du profil.";
+}

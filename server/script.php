@@ -32,6 +32,10 @@ if ( isset($_REQUEST['todo']) ){
     //   $data =  movieProfilController();
     //   break;
 
+    case 'updateProfile':
+      $data = updateProfileController();
+      break;
+
     case 'readProfil' : 
       $data =  readProfilController();
       break;

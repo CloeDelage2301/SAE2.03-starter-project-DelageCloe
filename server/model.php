@@ -134,3 +134,21 @@ function getAllProfil(){
     return $res; 
 }
 
+
+
+function updateProfile($id, $nom, $avatar, $age) {
+    $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
+
+    $sql = "UPDATE Profil 
+    SET nom = :nom, avatar = :avatar, age = :age 
+    WHERE id = :id";
+
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':age', $age);
+    $stmt->bindParam(':id', $id);
+
+    $stmt->execute();
+    return $stmt->rowCount(); 
+}

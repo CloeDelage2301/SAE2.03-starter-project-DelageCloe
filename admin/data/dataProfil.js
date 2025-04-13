@@ -15,4 +15,25 @@ DataProfil.addProfil = async function (formData) {
     
  };
 
-export {DataProfil};
+ DataProfil.update = async function (fdata) {
+    let config = {
+      method: "POST", 
+      body: fdata, 
+    };
+    let answer = await fetch(
+      HOST_URL + "/server/script.php?todo=updateProfile",
+      config
+    );
+    let data = await answer.json();
+    return data;
+  };
+
+  
+  DataProfil.readProfil = async function () {
+    let answer = await fetch(
+      HOST_URL + "/server/script.php?todo=readProfil"
+    );
+    let data = await answer.json();
+    return data;
+  };
+  export { DataProfil};
