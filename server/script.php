@@ -34,7 +34,7 @@ if ( isset($_REQUEST['todo']) ){
 
     case 'updateProfile':
       $data = updateProfileController();
-      break;
+    break;
 
     case 'readProfil' : 
       $data =  readProfilController();

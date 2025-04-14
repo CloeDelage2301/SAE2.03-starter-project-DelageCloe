@@ -59,7 +59,6 @@ function detailController() {
 
 function profilController() {
     
-    // Vérifiez que les paramètres sont définis
     if (!isset($_REQUEST['nom']) || !isset($_REQUEST['avatar']) || !isset($_REQUEST['age'])) {
         echo json_encode(["success" => false, "message" => "Paramètres manquants"]);
         exit();
@@ -68,9 +67,7 @@ function profilController() {
     $nom = $_REQUEST['nom'];
     $avatar = $_REQUEST['avatar'];
     $age = $_REQUEST['age'];
-    
-    // Vérifiez que l'âge est un entier valide
-    if ( $age <= 0) {
+        if ( $age <= 0) {
         echo json_encode(["success" => false, "message" => "Âge invalide"]);
         exit();
     }
@@ -101,11 +98,11 @@ function readMovieCategory() {
     $nom = $_REQUEST['nom'] ?? null;
     $avatar = $_REQUEST['avatar'] ?? null;
     $age = $_REQUEST['age'] ?? null;
-
-    if (empty($id) || empty($nom) || empty($age)) {
-        return "Erreur : Tous les champs obligatoires doivent être remplis.";
+  
+    if (empty($id) || empty($nom) || empty($age) || empty($avatar)) {
+        return "Veuillez remplir tout les champs.";
     }
-
+  
     $ok = updateProfile($id, $nom, $avatar, $age);
     return $ok ? "Le profil a été modifié avec succès." : "Erreur lors de la modification du profil.";
-}
+  }

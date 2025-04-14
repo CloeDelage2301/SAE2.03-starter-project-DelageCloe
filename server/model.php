@@ -1,23 +1,9 @@
 <?php
-/**
- * Ce fichier contient toutes les fonctions qui réalisent des opérations
- * sur la base de données, telles que les requêtes SQL pour insérer, 
- * mettre à jour, supprimer ou récupérer des données.
- */
 
-/**
- * Définition des constantes de connexion à la base de données.
- *
- * HOST : Nom d'hôte du serveur de base de données, ici "localhost".
- * DBNAME : Nom de la base de données
- * DBLOGIN : Nom d'utilisateur pour se connecter à la base de données.
- * DBPWD : Mot de passe pour se connecter à la base de données.
- */
 define("HOST", "localhost");
 define("DBNAME", "delage130");
 define("DBLOGIN", "delage130");
 define("DBPWD", "delage130");
-// hello
 
 function getAllMovies($age){
 
@@ -72,7 +58,6 @@ function detailMovie($id) {
     function getMoviesCategory($age) {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
     
-        // Requête SQL pour récupérer les films groupés par catégorie
         $sql = "SELECT 
                     Category.id AS category_id, 
                     Category.name AS category_name, 
@@ -88,7 +73,6 @@ function detailMovie($id) {
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_OBJ);
     
-        // Regrouper les films par catégorie
         $category = [];
         $rowCount = count($rows);
         for ($i = 0; $i < $rowCount; $i++) {
@@ -107,7 +91,7 @@ function detailMovie($id) {
             ];
         }
     
-        return array_values($category); // Retourne un tableau indexé
+        return array_values($category); 
     }
     function addProfil($nom, $avatar, $age) {
        
@@ -136,19 +120,23 @@ function getAllProfil(){
 
 
 
-function updateProfile($id, $nom, $avatar, $age) {
-    $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
-
+function updateProfile($nom, $avatar, $age, $id) {
+ 
+    
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    
     $sql = "UPDATE Profil 
-    SET nom = :nom, avatar = :avatar, age = :age 
-    WHERE id = :id";
-
+            SET nom = :nom, avatar = :avatar, age = :age 
+            WHERE id = :id";
+    
     $stmt = $cnx->prepare($sql);
+   
     $stmt->bindParam(':nom', $nom);
     $stmt->bindParam(':avatar', $avatar);
     $stmt->bindParam(':age', $age);
     $stmt->bindParam(':id', $id);
-
     $stmt->execute();
-    return $stmt->rowCount(); 
+    
+    $res = $stmt->rowCount(); 
+    return $res; 
 }
