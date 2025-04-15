@@ -23,7 +23,12 @@ require("model.php");
 //Itération 1
 function readMoviesController(){
     $movies = getAllMovies(); 
-    return $movies;
+    
+    if ($movies === false) {
+        echo json_encode(["success" => false, "message" => "Aucun films disponible pour le moment"]); 
+        exit();
+    }
+
 }
 
 //Itération 2

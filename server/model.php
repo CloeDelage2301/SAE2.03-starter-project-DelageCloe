@@ -157,13 +157,9 @@ function addFavoris($id_movie, $id_profil){
     VALUES (:id_movie, :id_profil);";
 
     $stmt = $cnx->prepare($sql);
-
     $stmt->bindParam(':id_profil', $id_profil);
     $stmt->bindParam(':id_movie', $id_movie);
-    
-
     $stmt->execute();
-
     return $stmt->rowCount();
 }
 

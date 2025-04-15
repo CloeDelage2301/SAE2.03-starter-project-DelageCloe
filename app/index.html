@@ -37,6 +37,7 @@
       C.profile = null;
     
       C.start = async function () {
+        console.log("C.start() est exécuté");
         let profils = await DataProfil.requestProfil();
         V.renderNavBar("C.hAbout()","C.handlerProfil()", profils);
         C.getAllMovies();
@@ -88,9 +89,9 @@
       let dataProfile = await DataProfil.readOne(val);
       C.profile = dataProfile[select.selectedIndex];
       console.log(C.profile);
-      const profileAvatar = document.querySelector("#profile-image");
-      if (profileAvatar && C.profile.avatar) {
-        profileAvatar.src = `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/server/images/${C.profile.avatar}`;
+      const profileImage = document.querySelector("#profile-image");
+      if (profileImage && C.profile.image) {
+        profileImage.src = `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/server/images/${C.profile.image}`;
        }
 
     C.getAllMovies(C.profile.age);
@@ -119,8 +120,7 @@ C.addFavoris = async function (id_movie) {
           alert(result.error || "Erreur lors de l'ajout aux favoris.");
         }
       };
-      // console.log(id_movie);
-      console.log(C.profile); 
+      
       // Itération 10
       C.removeFavoris = async function (id_movie) {
         if (!C.profile) {

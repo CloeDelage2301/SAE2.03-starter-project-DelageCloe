@@ -38,7 +38,7 @@ if ( isset($_REQUEST['todo']) ){
       $data = addFavorisController();
     break;
         
-    // Itération 9
+  
     case 'readFavoris':
       $data = readFavorisController();
     break;
