@@ -1,6 +1,6 @@
-let HOST_URL = "../server";
+let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe";
 
-
+// Itération 5
 let DataProfil = {};
 
 
@@ -15,6 +15,7 @@ DataProfil.addProfil = async function (formData) {
     
  };
 
+// Itération 8
  DataProfil.update = async function (fdata) {
   let config = {
     method: "POST", 
@@ -28,6 +29,7 @@ DataProfil.addProfil = async function (formData) {
   return data;
 };
   
+// Itération 6
   DataProfil.readProfil = async function () {
     let answer = await fetch(
       HOST_URL + "/server/script.php?todo=readProfil"

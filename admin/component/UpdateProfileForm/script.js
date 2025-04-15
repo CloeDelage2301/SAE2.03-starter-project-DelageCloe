@@ -1,6 +1,7 @@
 let templateFile = await fetch('./component/UpdateProfileForm/template.html');
 let template = await templateFile.text();
 
+// Itération 8
 let updateProfileForm = {};
 
 updateProfileForm.format = function(handler, profile) {

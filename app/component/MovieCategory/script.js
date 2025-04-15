@@ -1,5 +1,6 @@
 import { Movie } from "../Movie/script.js";
 
+// Itération 4
 let templateFile = await fetch("./component/MovieCategory/template.html");
 let template = await templateFile.text();
 

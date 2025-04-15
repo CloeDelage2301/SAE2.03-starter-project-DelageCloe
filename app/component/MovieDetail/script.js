@@ -1,6 +1,8 @@
 let templateFile = await fetch("./component/MovieDetail/template.html");
 let template = await templateFile.text();
 
+
+// Itération 3
 let MovieDetail = {};
 
 MovieDetail.format = function (movie) {

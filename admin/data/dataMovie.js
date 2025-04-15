@@ -1,7 +1,8 @@
-let HOST_URL = "../server";
+let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe";
 
 let DataMovie = {};
 
+// Itération 2
 DataMovie.addMovie= async function (fdata) {
   
     let config = {

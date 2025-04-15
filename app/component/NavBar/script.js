@@ -3,9 +3,10 @@ let template = await templateFile.text();
 
 let NavBar = {};
 
-NavBar.format = function (handlerMovies, handlerProfil, profils) {
+// Itération 6
+NavBar.format = function (hAbout, handlerProfil, profils) {
   let html = template;
-  html = html.replace("{{handlerMovies}}", handlerMovies);
+  html = html.replace("{{hAbout}}", hAbout);
   html = html.replace("{{handler}}", handlerProfil);
 
   let profil = "";

@@ -20,11 +20,13 @@
  */
 require("model.php");
 
+//Itération 1
 function readMoviesController(){
     $movies = getAllMovies(); 
     return $movies;
 }
 
+//Itération 2
 function addController() {
     header('Content-Type: application/json');
 
@@ -47,6 +49,8 @@ function addController() {
 
     exit();
 }
+
+//Itération 3
 function detailController() {
 
     $id = $_REQUEST['id'];
@@ -55,8 +59,15 @@ function detailController() {
     exit();
 }
 
+//Itération 4
+function readMovieCategory() {
+    $age = isset($_REQUEST['age']) ? $_REQUEST['age'] : 0; 
+    $category = getMoviesCategory($age);
+    return $category ? $category : false;
+  }
 
 
+//Itération 5
 function profilController() {
     
     if (!isset($_REQUEST['nom']) || !isset($_REQUEST['avatar']) || !isset($_REQUEST['age'])) {
@@ -82,27 +93,61 @@ function profilController() {
     
     exit();
 }
-function readMovieCategory() {
-    $age = isset($_REQUEST['age']) ? $_REQUEST['age'] : 0; 
-    $category = getMoviesCategory($age);
-    return $category ? $category : false;
-  }
 
+//Itération 6 / 7
   function readProfilController() {
     $profil = getAllProfil();
     return $profil;
   }
 
+//Itération 8
   function updateProfileController() {
-    $id = $_REQUEST['id'] ?? null;
-    $nom = $_REQUEST['nom'] ?? null;
-    $avatar = $_REQUEST['avatar'] ?? null;
-    $age = $_REQUEST['age'] ?? null;
+      $id = $_REQUEST['id'] ?? null;
+      $nom = $_REQUEST['nom'] ?? null;
+      $avatar = $_REQUEST['avatar'] ?? null;
+      $age = $_REQUEST['age'] ?? null;
   
-    if (empty($id) || empty($nom) || empty($age) || empty($avatar)) {
+    if (empty($id) || empty($nom) || empty($avatar) || empty($age)) {
         return "Veuillez remplir tout les champs.";
     }
   
-    $ok = updateProfile($id, $nom, $avatar, $age);
+    $ok = updateProfile($id, $nom, $avatar, $age,);
     return $ok ? "Le profil a été modifié avec succès." : "Erreur lors de la modification du profil.";
   }
+
+
+//Itération 9
+  function addFavorisController() {
+    $id_profil = $_REQUEST['id_profil'] ?? null;
+    $id_movie = $_REQUEST['id_movie'] ?? null;
+
+    if (isFavoris($id_movie, $id_profil)) {
+        return ["error" => "Ce film est déjà dans les favoris."];
+    }
+
+    $result = addFavoris($id_movie, $id_profil);
+    if ($result) {
+        return ["success" => "Film ajouté aux favoris."];
+    } else {
+        return ["error" => "Impossible d'ajouter le film aux favoris."];
+    }
+}
+
+function readFavorisController() {
+  $id_profil = $_REQUEST['id_profil'] ?? null;
+  $favoris = getFavoris($id_profil);
+  return $favoris ? $favoris : [];
+}
+
+
+//Itération 10
+function removeFavorisController() {
+  $id_profil = $_REQUEST['id_profil'] ?? null;
+  $id_movie = $_REQUEST['id_movie'] ?? null;
+  $result = removeFavoris($id_movie, $id_profil);
+  if ($result) {
+      return ["success" => "Film supprimé des favoris."];
+  } else {
+      return ["error" => "Impossible de supprimer le film des favoris."];
+  }
+}

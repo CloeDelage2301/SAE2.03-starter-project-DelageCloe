@@ -28,35 +28,53 @@ if ( isset($_REQUEST['todo']) ){
   // peut s'écrire aussi avec des if/else
   switch($todo){
 
-    // case 'movieProfil': 
-    //   $data =  movieProfilController();
-    //   break;
+    // Itération 10
+    case 'removeFavoris':
+      $data = removeFavorisController();
+      break;
+      
+    // Itération 9
+    case 'addFavoris': 
+      $data = addFavorisController();
+    break;
+        
+    // Itération 9
+    case 'readFavoris':
+      $data = readFavorisController();
+    break;
 
+    // Itération 8
     case 'updateProfile':
       $data = updateProfileController();
     break;
 
+    // Itération 6 / 7
     case 'readProfil' : 
       $data =  readProfilController();
       break;
       
+    // Itération 5
     case 'addProfil' : 
       $data =  profilController();
       break;
 
+    // Itération 4
     case'readMovieCategory':
       $data = readMovieCategory();
       break;
 
+    // Itération 3
     case 'readMoviedetails': 
       $data = detailController(); 
       break;
-  
+
+
+  // Itération 2
     case 'addMovie':
       $data = addController();
     break;
 
-    
+    // Itération 1
     case'readmovies':
       $data = readMoviesController();
       break;

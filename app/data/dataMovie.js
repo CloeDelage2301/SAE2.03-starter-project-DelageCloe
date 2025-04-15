@@ -1,4 +1,4 @@
-let HOST_URL = "../server"; //"http://mmi.unilim.fr/~????"; // CHANGE THIS TO MATCH YOUR CONFIG
+let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe"; //"http://mmi.unilim.fr/~????"; // CHANGE THIS TO MATCH YOUR CONFIG
 
 let DataMovie = {};
 
@@ -23,14 +23,25 @@ DataMovie.requestMovieCategory = async function () {
   let categories = await answer.json();
   return categories;
 };
+
+// Itération 9
+DataMovie.addFavoris = async function (id_profil, id_movie) {
+  let answer = await fetch(
+    HOST_URL + "/server/script.php?todo=addFavoris&id_profil=" + id_profil + "&id_movie=" + id_movie
+  );
+
+  let data = await answer.json();
+  return data;
+};
+
+// Itération 10
+DataMovie.removeFavoris = async function (id_profil, id_movie) {
+  let answer = await fetch(
+    HOST_URL + "/server/script.php?todo=removeFavoris&id_profil=" + id_profil + "&id_movie=" + id_movie
+  );
+
+  let data = await answer.json();
+  return data;
+};
+
 export {DataMovie};
-
-// DataMovie.requestMovieProfil = async function(age){
-//     let answer = await fetch(HOST_URL + "/server/script.php?todo=movieProfil&id=" + age );
-//     let profil = await answer.json();
-//     return profil;
-// }
-// export {DataMovie};
-
-
-
