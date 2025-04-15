@@ -97,14 +97,14 @@ function detailMovie($id) {
     }
 
 //Itération 5
-    function addProfil($nom, $avatar, $age) {
+    function addProfil($name, $image, $age) {
        
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-        $sql = "INSERT INTO Profil (nom, avatar, age) 
-                VALUES (:nom, :avatar, :age)";
+        $sql = "INSERT INTO Profil (name, image, age) 
+                VALUES (:name, :image, :age)";
         $stmt = $cnx->prepare($sql);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':avatar', $avatar);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':image', $image);
         $stmt->bindParam(':age', $age);
 
         $stmt->execute();
@@ -117,7 +117,7 @@ function detailMovie($id) {
 
 function getAllProfil(){
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "select id, nom, avatar, age from Profil";
+    $sql = "select id, name, image, age from Profil";
     $stmt = $cnx->prepare($sql);
     $stmt->execute();
     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -126,20 +126,20 @@ function getAllProfil(){
 
 //Itération 8
 
-function updateProfile($id, $nom, $avatar, $age) {
+function updateProfile($id, $name, $image, $age) {
  
     
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
     
     $sql = "UPDATE Profil 
-            SET nom = :nom, avatar = :avatar, age = :age 
+            SET name = :name, image = :image, age = :age 
             WHERE id = :id";
     
     $stmt = $cnx->prepare($sql);
    
     $stmt->bindParam(':id', $id);
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':image', $image);
     $stmt->bindParam(':age', $age);
     $stmt->execute();
     

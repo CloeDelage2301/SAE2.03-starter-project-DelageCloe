@@ -70,20 +70,20 @@ function readMovieCategory() {
 //Itération 5
 function profilController() {
     
-    if (!isset($_REQUEST['nom']) || !isset($_REQUEST['avatar']) || !isset($_REQUEST['age'])) {
+    if (!isset($_REQUEST['name']) || !isset($_REQUEST['image']) || !isset($_REQUEST['age'])) {
         echo json_encode(["success" => false, "message" => "Paramètres manquants"]);
         exit();
     }
     
-    $nom = $_REQUEST['nom'];
-    $avatar = $_REQUEST['avatar'];
+    $name = $_REQUEST['name'];
+    $image = $_REQUEST['image'];
     $age = $_REQUEST['age'];
         if ( $age <= 0) {
         echo json_encode(["success" => false, "message" => "Âge invalide"]);
         exit();
     }
     
-    $ok = addProfil($nom, $avatar, $age);
+    $ok = addProfil($name, $image, $age);
     
     if ($ok != 0) {
         echo json_encode(["success" => true, "message" => "Profil ajouté à la base de donnée"]);
@@ -103,16 +103,16 @@ function profilController() {
 //Itération 8
   function updateProfileController() {
       $id = $_REQUEST['id'] ?? null;
-      $nom = $_REQUEST['nom'] ?? null;
-      $avatar = $_REQUEST['avatar'] ?? null;
+      $name = $_REQUEST['name'] ?? null;
+      $image = $_REQUEST['image'] ?? null;
       $age = $_REQUEST['age'] ?? null;
   
-    if (empty($id) || empty($nom) || empty($avatar) || empty($age)) {
+    if (empty($id) || empty($name) || empty($image) || empty($age)) {
         return "Veuillez remplir tout les champs.";
     }
-  
-    $ok = updateProfile($id, $nom, $avatar, $age,);
+    $ok = updateProfile($id, $name, $image, $age);
     return $ok ? "Le profil a été modifié avec succès." : "Erreur lors de la modification du profil.";
+
   }
 
 

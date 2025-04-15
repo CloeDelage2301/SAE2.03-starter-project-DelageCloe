@@ -86,11 +86,6 @@ C.handlerUpdateProfile = async function () {
         let form = document.querySelector(".updateProfile__form");
         let fd = new FormData(form);
         let res = await DataProfil.update(fd);
-
-        if (res.includes("succès")) { 
-          form.reset(); 
-          location.reload();
-        }
         V.renderLog(res);
       };
 
@@ -99,7 +94,7 @@ C.handlerUpdateProfile = async function () {
         let optionsHtml = "";
         for (let i = 0; i < profiles.length; i++) {
           let profile = profiles[i];
-          optionsHtml += `<option value="${profile.id}">${profile.nom}</option>`;
+          optionsHtml += `<option value="${profile.id}">${profile.name}</option>`;
         }
         let select = document.querySelector('#profile-select');
         if (select) {

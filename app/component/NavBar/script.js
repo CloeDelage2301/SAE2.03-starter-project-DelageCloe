@@ -12,12 +12,12 @@ NavBar.format = function (hAbout, handlerProfil, profils) {
   let profil = "";
   for (let i = 0; i < profils.length; i++) {
     let p = profils[i];
-    profil += `<option label= "${p.nom}" value= "${p.id}" kdata-img="${p.avatar}" data-dob="${p.age}">${p.nom}</option>`;
+    profil += `<option label= "${p.name}" value= "${p.id}" kdata-img="${p.image}" data-dob="${p.age}">${p.nom}</option>`;
   }
 
-  let avatar = profils[0]?.avatar || "";
+  let avatar = profils[0]?.image || "";
   html = html.replace("{{profil}}", profil);
-  html = html.replace("{{avatar}}", avatar);
+  html = html.replace("{{image}}", image);
   return html;
 };
 

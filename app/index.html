@@ -119,7 +119,8 @@ C.addFavoris = async function (id_movie) {
           alert(result.error || "Erreur lors de l'ajout aux favoris.");
         }
       };
-
+      // console.log(id_movie);
+      console.log(C.profile); 
       // Itération 10
       C.removeFavoris = async function (id_movie) {
         if (!C.profile) {
