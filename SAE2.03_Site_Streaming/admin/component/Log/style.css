@@ -1,0 +1,51 @@
+.log {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 30rem;
+  height: 8rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  margin: 1rem;
+  background-color:var(--color-bg);
+  border-style: solid;
+  border-radius: 1.5rem;
+  border-color: var(--color-bg);
+  border-width: 1px;
+  overflow: hidden;
+  box-shadow: 0 0 8px var(--color-primary);
+  .log__list {
+    font-size: bold;
+    color: var(--color-primary);
+    overflow-y: scroll;
+    list-style: none;
+    font-weight: bold;
+    .last {
+      animation: fondu-en-entree 1s ease-in-out;
+    }
+
+    .clignotant {
+      animation: clignotement 2.5s infinite;
+    }
+  }
+}
+
+@keyframes fondu-en-entree {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes clignotement {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,43 @@
+.movie-category {
+
+  margin-bottom: 60px;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px hsl(0, 0%, 41%);
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+
+  
+}
+
+.movie-category:hover {
+  transform: scale(1.01);
+}
+
+.movie-category__title {
+  margin-bottom: 25px;
+  padding-left: 10px;
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 16px;
+  justify-content: center;
+
+}
+
+
+
+@media (min-width: 100rem) {
+
+  .movie-category__title {
+   text-align: left;
+  }
+
+  
+}
