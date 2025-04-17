@@ -8,8 +8,11 @@
 @import "../component/Movie/style.css" layer(components);
 @import "../component/MovieDetail/style.css" layer(components);
 @import "../component/MovieCategory/style.css" layer(components);
+@import "../component/Footer/style.css" layer(components);
 
 
 header{
     width: 100%;
+    position: fixed;
+    z-index: 1000
 }

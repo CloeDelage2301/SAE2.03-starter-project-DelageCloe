@@ -1,4 +1,4 @@
-let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe"; 
+let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/SAE2.03_Site_Streaming"; 
 
 let DataMovie = {};
 

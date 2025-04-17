@@ -29,7 +29,7 @@
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfil } from "./data/dataProfil.js";
-      import { Favoris } from "./component/Favoris/script.js";
+  
       
       
       window.C = {};
@@ -91,76 +91,12 @@
       console.log(C.profile);
       const profileImage = document.querySelector("#profile-image");
       if (profileImage && C.profile.image) {
-        profileImage.src = `../server/images/${C.profile.image}`;
+        profileImage.src = `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/SAE2.03_Site_Streaming/server/images/${C.profile.image}`;
        }
 
     C.getAllMovies(C.profile.age);
 };
      
-//Itérarion 9
-C.addFavoris = async function (id_movie) {
-        if (!C.profile) {
-          alert("Veuillez sélectionner un profil avant d'ajouter un favori.");
-          return;
-        }
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=addFavoris&id_profil=${C.profile.id}&id_movie=${id_movie}`
-        );
-        let result = await response.json();
-
-        if (result.success) {
-          alert("Ajouté aux favoris !");
-          let button = document.querySelector(
-            `button[onclick="C.addFavoris(${id_movie})"]`
-          );
-          if (button) {
-            button.classList.add("is-favoris");
-          }
-        } else {
-          alert(result.error || "Erreur lors de l'ajout aux favoris.");
-        }
-      };
-      
-      // Itération 10
-      C.removeFavoris = async function (id_movie) {
-        if (!C.profile) {
-          alert(
-            "Veuillez sélectionner un profil avant de supprimer un favori."
-          );
-          return;
-        }
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=removeFavoris&id_profil=${C.profile.id}&id_movie=${id_movie}`
-        );
-
-        let result = await response.json();
-
-        if (result.success) {
-          alert("Supprimé des favoris !");
-          C.showFavoris();
-        } else {
-          alert(result.error || "Erreur lors de la suppression du favori.");
-        }
-      };
-
-      C.showFavoris = async function () {
-        if (!C.profile) {
-          alert("Veuillez sélectionner un profil.");
-          return;
-        }
-
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=readFavoris&id_profil=${C.profile.id}`
-        );
-        let favoris = await response.json();
-
-        let content = document.querySelector("#content");
-        if (!favoris || favoris.length === 0) {
-          content.innerHTML = "<p>Votre liste de favoris est vide.</p>";
-          return;
-        }
-        content.innerHTML = Favoris.format(favoris);
-      };
 
       window.V = {};
 

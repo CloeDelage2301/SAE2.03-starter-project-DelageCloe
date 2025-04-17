@@ -1,5 +1,6 @@
 .navbar {
-  display: flex;
+  display: grid;
+  grid-template-areas: "a b";
   justify-content: center;
   align-items: center;
   padding: 1rem 3rem;

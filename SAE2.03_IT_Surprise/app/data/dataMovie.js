@@ -1,4 +1,4 @@
-let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe"; 
+let HOST_URL = "https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe/SAE2.03_IT_Surprise"; 
 
 let DataMovie = {};
 
@@ -24,24 +24,5 @@ DataMovie.requestMovieCategory = async function () {
   return categories;
 };
 
-// Itération 9
-DataMovie.addFavoris = async function (id_profil, id_movie) {
-  let answer = await fetch(
-    HOST_URL + "/server/script.php?todo=addFavoris&id_profil=" + id_profil + "&id_movie=" + id_movie
-  );
-
-  let data = await answer.json();
-  return data;
-};
-
-// Itération 10
-DataMovie.removeFavoris = async function (id_profil, id_movie) {
-  let answer = await fetch(
-    HOST_URL + "/server/script.php?todo=removeFavoris&id_profil=" + id_profil + "&id_movie=" + id_movie
-  );
-
-  let data = await answer.json();
-  return data;
-};
 
 export {DataMovie};

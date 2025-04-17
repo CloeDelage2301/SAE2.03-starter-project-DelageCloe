@@ -38,18 +38,19 @@ ol[role="list"] {
 body {
   min-height: 100vh;
   line-height: 1.5;
-
+  margin-left: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  
-  color: var(--color-bg);
+  color: #102C3D;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  background-color: var(--color-bg);
+  align-items: baseline;
+  background-color: #102C3D;
   gap: 2rem;
+  overflow-x: hidden;
 }
 
 h1,

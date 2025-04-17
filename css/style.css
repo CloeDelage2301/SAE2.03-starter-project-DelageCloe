@@ -1,0 +1,105 @@
+:root {
+    --bg-color: #0e0e0e;
+    --primary-color: #e63946;
+    --text-color: #f1f1f1;
+    --hover-color: #ff6b81;
+    --font: 'Poppins', sans-serif;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: var(--font);
+    color: var(--text-color);
+  }
+  
+
+  .Site {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh; 
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+
+  .phrase {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(230, 57, 70, 0.5);
+    margin-bottom: 2rem;
+  }
+
+  .menu {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid var(--primary-color);
+   box-shadow: var(--primary-color) 0px 0px 10px;
+   border-radius: 20px;
+   font-size: 1.5rem;
+   
+   width: 30rem;
+   height: 20rem;
+   
+  }
+  
+  .menu__content{
+    display: flex;
+    gap: 10rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  .menu__content h1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+   
+  }
+
+  .menu-1 {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: relative; 
+    transition: color 0.3s ease; 
+  }
+  
+  .menu-1::after {
+
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; 
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease; 
+  }
+  
+  .menu-1:hover {
+    color: var(--hover-color); 
+  }
+  
+  .menu-1:hover::after {
+    width: 100%;
+  }
+
+  .Site__Fini{
+    color: var(--primary-color);
+    margin: 0;
+  }
+  

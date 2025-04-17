@@ -1,109 +1,124 @@
 .moviedetail {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-  padding: 1rem;
-  width: 90%; /* La carte occupe 90% de la largeur de son conteneur */
-  max-width: 1000px; /* Limite la largeur maximale */
-  box-shadow: 0 0 8px hsl(0, 0%, 41%);
-}
-.moviedetail__image {
-  width: 40rem; 
-  height: 40rem; 
-  border-radius: 1rem;
-  object-fit: cover;
- 
-}
-.moviedetail__card {
-  display: flex;
-  flex-direction: column; /* Les éléments s'empilent verticalement */
-  gap: 1rem;
-  padding-top: 1rem;
+  align-items: stretch;
+  background: linear-gradient(to right, #121212, rgba(18, 18, 18, 0.8)), url("/SAE2.03-starter-project-DelageCloe/SAE2.03_IT_Surprise/server/images/{{image}}");
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  max-width: 1200px;
+  margin: 2rem auto;
+  position: relative;
+  color: white;
+  gap: 2rem;
+  padding: 2rem;
 }
 
-.moviedetail__card__header {
+.moviedetail__image {
+  width: 50rem;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.moviedetail__card {
   display: flex;
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 60%;
 }
 
 .moviedetail__card__title {
-  font-size: 1.5rem; /* Taille du titre relative */
-  color: var(--color-primary);
-  text-align: center;
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0;
 }
 
 .moviedetail__card__headerelements {
   display: flex;
   gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* Les éléments passent à la ligne si nécessaire */
+  flex-wrap: wrap;
 }
 
 .moviedetail__year,
 .moviedetail__length {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: var(--color-primary);
-  border-radius: 0.5rem;
-  color: var(--color-bg);
-  font-size: 1rem;
+  background-color: #00b3ff;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
-.moviedetail__elements {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  color: white;
+.moviedetail__elements p {
+  margin: 0.2rem 0;
   font-size: 1rem;
-  font-weight: bold;
+  color: #e0e0e0;
+}
+
+.moviedetail__description {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #ccc;
+  line-height: 1.5;
 }
 
 .moviedetail__trailer {
-  width: 100%; /* La vidéo occupe toute la largeur disponible */
-  max-width: 40rem; /* Limite la largeur maximale de la vidéo */
-  height: 22.5rem; /* Définit une hauteur proportionnelle pour un ratio 16:9 */
-  border-radius: 1rem; /* Coins arrondis */
-  border: none; /* Supprime les bordures */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour un effet esthétique */
-  margin-top: 1rem; /* Ajoute un espace au-dessus de la vidéo */
-  object-fit: cover; 
-  display: block; /* Assure que la vidéo est un bloc */
-   
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100%;
+  height: 18rem;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
 }
 
-@media screen and (min-width: 100rem) {
+.moviedetail__playbtn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #00b3ff;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.moviedetail__playbtn:hover {
+  background-color: #0099dd;
+}
+
+/* Responsive */
+/* @media screen and (max-width: 900px) {
   .moviedetail {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 2rem;
-   max-width: 2000px;
-   max-height: 50rem;
-  }
-  .moviedetail__card {
-    height: 40rem;
-    display: flex;
-    gap: 3rem;
-  }
- 
-  .moviedetail__trailer {
-    width: 30rem;
-    height: 15rem;
-   
+    flex-direction: column;
+    padding: 1rem;
   }
 
-  .moviedetail__elements {
-    font-size: 1.4rem;
+  .moviedetail__image {
+    width: 100%;
+    height: 250px;
   }
-  .moviedetail__card__title {
-    font-size: 3rem;
+
+  .moviedetail__card {
+    width: 100%;
   }
-}
+
+  .moviedetail__trailer {
+    height: 15rem;
+  }
+
+  .moviedetail__playbtn {
+    position: static;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+} */

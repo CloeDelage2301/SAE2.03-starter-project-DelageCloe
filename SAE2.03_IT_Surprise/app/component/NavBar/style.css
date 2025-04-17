@@ -1,92 +1,190 @@
 .navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 3rem;
-  background-color: hsl(0, 0%, 14%);
-  border-radius: 1rem;
-  position: sticky;
-  z-index: 0;
-
-  .navbar__item {
-    --_offset: 0.2rem;
-
-    padding: 0.5rem 1rem;
-    text-decoration: underline;
-    text-decoration-thickness: 0.1rem;
-    text-underline-offset: var(--_offset);
-    cursor: pointer;
-    transition: text-underline-offset 0.2s ease-in-out;
-    list-style: none;
-    color: var(--color-primary);
-    font-family: var(--ff-sans);
-    font-weight: bold;
-    font-size: 2rem;
-    &:hover {
-      --_offset: 0.5rem;
-    }
-  }
+  background-color: #102C3D; 
+  border-bottom: 1px solid #1f2d36;
+  padding: 1rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1;
+  grid-template-areas: "a b b";
+  box-shadow: 0 1px 20px #AAC0C8;
+ 
 }
 
 .navbar__list {
- 
-  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style:none;
+}
+
+.navbar__item {
+  color: #AAC0C8;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.navbar__item:hover {
+  color: #ffffff;
 }
 
 .navbar__profile {
+ 
   display: flex;
   align-items: center;
   gap: 1rem;
+}
 
-  .navbar__label {
-    font-size: 0.875rem;
+.navbar__select {
+  background-color: #1a2b34;
+  border: 1px solid #33444d;
+  color: #e6e6e6;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  transition: border 0.3s ease;
+  margin: 0.5rem;
+}
+
+.navbar__select:hover,
+.navbar__select:focus {
+  border-color: #d4e92e; 
+}
+
+.navbar__image {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d4e92e;
+}
+
+
+
+.navbar__logo-svg {
+  width: 100px;
+  height: auto;
+  fill: #d4e92e;
+  width: 3.5rem;
+}
+
+.navbar__prenium{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  color: white;
+  font-size: 1rem;
+  grid-area: 1/3;
+
+}
+
+.navbar__prenium span{
+  color: #d4e92e;
+  font-size: 1rem;
+  margin:0.5rem;
+  
+}
+
+.navbar__dominos{
+  display: flex;
+  align-items: center;
+ font-size: 1rem;
+ color: #558090;
+}
+
+.navbar__logodominos {
+  height: 1rem;
+  width: 1rem;
+  margin: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    position:sticky;
+    padding: 0;
+  }
+
+  .navbar__item {
+ font-size: 1rem;
+   
   }
 
   .navbar__select {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.9rem;
-    border-radius: 0.375rem;
-    border: 1px solid var(--color-border, #141313);
-    background-color: var(--color-surface, #3b3a3a);
-    color: var(--color-fg);
-    outline: none;
-    transition: border-color 0.2s ease;
-
-    &:hover,
-    &:focus {
-      border-color: var(--color-accent, #888);
-    }
+    width: 100%;
+  
   }
 
-  .navbar__image {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--color-border, #000000);
+  .navbar__logo-svg {
+   width: 2rem;
+   height: 2rem;
+   padding: 0;
+   margin: 0;
   }
+
+  .navbar__logodominos {
+  opacity: 0;
+  }
+  .navbar__prenium {
+    font-size: 0.7rem;
+  }
+  .navbar__prenium span{
+    color: #d4e92e;
+    font-size: 0.7rem;
+    margin:0;
+    
+  }
+  
+  
+.navbar__profile {
+ 
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
 }
 
 
-/* Responsive (mobile) */
-@media (min-width: 90rem) {
-.navbar {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem;
+
+ @media screen and (max-width: 700px) {
+  .navbar {
+    flex-direction: row; /* Aligne les éléments sur une seule ligne */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
 
   .navbar__list {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
     gap: 1rem;
   }
 
+  .navbar__item {
+    font-size: 1rem;
+  }
+  .navbar__logo-svg {
+    width: 2.5rem; /* Taille du logo */
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+
   .navbar__profile {
-    width: 100%;
-    justify-content: space-between;
+    display: flex; /* Affiche le profil */
+    align-items: center;
+    gap: 1rem;
+    padding-right: 0;
+  }
+
+  .navbar__prenium,
+  .navbar__dominos {
+opacity: 0;
   }
 }
-}
-
-
+ 

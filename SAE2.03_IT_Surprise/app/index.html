@@ -5,9 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./component/NavBar/style.css" />
-    <link rel="stylesheet" href="./component/MovieCategory/style.css" />
    
+  
     
  
   
@@ -17,6 +16,7 @@
     <header id="header"></header>
 
     <section class="cards" id="content"></section>
+    <footer id="footer"></footer>
     
    
     <script type="module">
@@ -29,7 +29,8 @@
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfil } from "./data/dataProfil.js";
-      import { Favoris } from "./component/Favoris/script.js";
+      import { Footer } from "./component/Footer/script.js";
+    
       
       
       window.C = {};
@@ -42,7 +43,10 @@
         V.renderNavBar("C.hAbout()","C.handlerProfil()", profils);
         C.getAllMovies();
         C.getCategories();
+       
       };
+      Footer.render();
+
       C.hAbout = function () {
         C.getAllMovies();
       };
@@ -97,70 +101,27 @@
     C.getAllMovies(C.profile.age);
 };
      
-//Itérarion 9
-C.addFavoris = async function (id_movie) {
-        if (!C.profile) {
-          alert("Veuillez sélectionner un profil avant d'ajouter un favori.");
+    C.scrollLeft = function (id) {
+        const track = document.getElementById(id);
+        if (!track) {
+          console.error(`Element with ID '${id}' not found.`);
           return;
         }
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=addFavoris&id_profil=${C.profile.id}&id_movie=${id_movie}`
-        );
-        let result = await response.json();
-
-        if (result.success) {
-          alert("Ajouté aux favoris !");
-          let button = document.querySelector(
-            `button[onclick="C.addFavoris(${id_movie})"]`
-          );
-          if (button) {
-            button.classList.add("is-favoris");
-          }
-        } else {
-          alert(result.error || "Erreur lors de l'ajout aux favoris.");
-        }
-      };
-      
-      // Itération 10
-      C.removeFavoris = async function (id_movie) {
-        if (!C.profile) {
-          alert(
-            "Veuillez sélectionner un profil avant de supprimer un favori."
-          );
-          return;
-        }
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=removeFavoris&id_profil=${C.profile.id}&id_movie=${id_movie}`
-        );
-
-        let result = await response.json();
-
-        if (result.success) {
-          alert("Supprimé des favoris !");
-          C.showFavoris();
-        } else {
-          alert(result.error || "Erreur lors de la suppression du favori.");
-        }
+        console.log('Scroll Left');
+        track.scrollBy({ left: -600, behavior: "smooth" });
       };
 
-      C.showFavoris = async function () {
-        if (!C.profile) {
-          alert("Veuillez sélectionner un profil.");
+      C.scrollRight = function (id) {
+        const track = document.getElementById(id);
+        if (!track) {
+          console.error(`Element with ID '${id}' not found.`);
           return;
         }
-
-        let response = await fetch(
-          `https://mmi.unilim.fr/~delage130/SAE2.03-starter-project-DelageCloe//server/script.php?todo=readFavoris&id_profil=${C.profile.id}`
-        );
-        let favoris = await response.json();
-
-        let content = document.querySelector("#content");
-        if (!favoris || favoris.length === 0) {
-          content.innerHTML = "<p>Votre liste de favoris est vide.</p>";
-          return;
-        }
-        content.innerHTML = Favoris.format(favoris);
+        console.log('Scroll Right');
+        track.scrollBy({ left: 600, behavior: "smooth" });
       };
+
+
 
       window.V = {};
 
