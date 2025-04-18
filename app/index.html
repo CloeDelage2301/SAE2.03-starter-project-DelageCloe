@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>SAE2.03 APP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./component/NavBar/style.css" />
+    <link rel="stylesheet" href="./component/MovieCategory/style.css" />
+   
+    
+ 
+  
+  </head>
+
+  <body>
+    <header id="header"></header>
+
+    <section class="cards" id="content"></section>
+    
+   
+    <script type="module">
+      //Navigation
+      import { NavBar } from "./component/NavBar/script.js";
+
+      //Movie
+      import { DataMovie } from "./data/dataMovie.js";
+      import { Movie } from "./component/Movie/script.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfil } from "./data/dataProfil.js";
+  
+      
+      
+      window.C = {};
+
+      C.profile = null;
+    
+      C.start = async function () {
+        console.log("C.start() est exécuté");
+        let profils = await DataProfil.requestProfil();
+        V.renderNavBar("C.hAbout()","C.handlerProfil()", profils);
+        C.getAllMovies();
+        C.getCategories();
+      };
+      C.hAbout = function () {
+        C.getAllMovies();
+      };
+
+      C.getAllMovies = async function (age) {
+        let data = await DataMovie.requestMovies(age);
+        if (!Array.isArray(data) || data.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film disponible pour votre tranche d'âge.</p>";
+          return;
+        }
+        V.renderMovieCategory(data);
+      };
+
+      // Itération 3
+      
+      C.handlerDetail = async function (id) {
+        let data = await DataMovie.requestMovieDetails(id);
+        V.renderMovieDetail(data);
+      };
+
+
+     // Itération 4
+      C.getCategories = async function () {
+        if (!C.profile) {
+          document.querySelector("#content").innerHTML =
+            "<p>Veuillez sélectionner un profil.</p>";
+          return;
+        }
+        let categories = await DataMovie.requestMovies(99);
+        if (!Array.isArray(categories) || categories.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucune catégorie disponible pour votre tranche d'âge.</p>";
+          return;
+        }
+        V.renderMovieCategory(categories); 
+      };
+
+      // Itération 6/7
+
+      C.handlerProfil = async function () {
+      const select = document.querySelector("#profile-select");
+      let val = select.options[select.selectedIndex].value;
+      let dataProfile = await DataProfil.readOne(val);
+      C.profile = dataProfile[select.selectedIndex];
+      console.log(C.profile);
+      const profileImage = document.querySelector("#profile-image");
+      if (profileImage && C.profile.image) {
+        profileImage.src = `../server/images/${C.profile.image}`;
+       }
+
+    C.getAllMovies(C.profile.age);
+};
+     
+
+      window.V = {};
+
+      // Itération 1 / 6
+      V.renderNavBar = function (hHome, handlerProfil, profils) {
+        let header = document.querySelector("#header");
+        header.innerHTML = NavBar.format(hHome, handlerProfil, profils);
+
+      };
+
+      // Itération 2
+      V.renderMovie = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = Movie.format(data);
+      };
+      
+      // Itération 3
+      V.renderMovieDetail = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = MovieDetail.format(data);
+      };
+
+      // Itération 4
+      V.renderMovieCategory = function (data) {
+        let content = document.querySelector("#content");
+        let formattedContent = "";
+        for (let category of data) {
+          formattedContent += MovieCategory.format(category);
+        }
+        content.innerHTML = formattedContent;
+      };
+
+      C.start();
+    </script>
+  </body>
+</html>

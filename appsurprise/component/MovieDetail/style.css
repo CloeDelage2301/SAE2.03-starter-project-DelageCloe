@@ -1,0 +1,146 @@
+/* Style de base */
+.moviedetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 90%; /* La carte occupe 90% de la largeur de son conteneur */
+  max-width: 1000px; /* Limite la largeur maximale */
+  box-shadow: 0 0 8px hsl(0, 0%, 41%);
+}
+
+.moviedetail__image {
+  width: 40rem;
+  height: 40rem;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+.moviedetail__card {
+  display: flex;
+  flex-direction: column; /* Les éléments s'empilent verticalement */
+  gap: 1rem;
+  padding-top: 1rem;
+  color: white;
+}
+
+.moviedetail__card__header {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.moviedetail__card__title {
+  font-size: 1.5rem; /* Taille du titre relative */
+  color: #d4e92e; /* Jaune comme ITVX */
+  text-align: center;
+}
+
+.moviedetail__card__headerelements {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Les éléments passent à la ligne si nécessaire */
+}
+
+.moviedetail__year,
+.moviedetail__length {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #d4e92e; /* Jaune comme ITVX */
+  border-radius: 0.5rem;
+  color: #121212; /* Fond sombre pour contraste avec le jaune */
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.moviedetail__elements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.moviedetail__trailer {
+  width: 100%; /* La vidéo occupe toute la largeur disponible */
+  max-width: 40rem; /* Limite la largeur maximale de la vidéo */
+  height: 22.5rem; /* Définit une hauteur proportionnelle pour un ratio 16:9 */
+  border-radius: 1rem; /* Coins arrondis */
+  border: none; /* Supprime les bordures */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ajoute une ombre pour un effet esthétique */
+  margin-top: 1rem; /* Ajoute un espace au-dessus de la vidéo */
+  object-fit: cover;
+  display: block; /* Assure que la vidéo est un bloc */
+}
+
+/* Responsivité pour les grands écrans */
+@media screen and (min-width: 100rem) {
+  .moviedetail {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 2000px;
+    max-height: 50rem;
+  }
+
+  .moviedetail__card {
+    height: 40rem;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .moviedetail__trailer {
+    width: 30rem;
+    height: 15rem;
+  }
+
+  .moviedetail__elements {
+    font-size: 1.4rem;
+  }
+
+  .moviedetail__card__title {
+    font-size: 3rem;
+  }
+}
+
+/* Responsivité pour les petits écrans (tablettes, mobiles) */
+@media screen and (max-width: 768px) {
+  .moviedetail {
+    width: 100%; /* La carte occupe toute la largeur sur mobile */
+    padding: 1rem; /* Réduit le padding */
+  }
+
+  .moviedetail__image {
+    width: 100%; /* Réduit la taille de l'image */
+    height: auto; /* Ajuste la hauteur pour garder les proportions */
+  }
+
+  .moviedetail__card__title {
+    font-size: 1.8rem; /* Taille du titre plus petite sur mobile */
+  }
+
+  .moviedetail__trailer {
+    width: 100%; /* La vidéo occupe toute la largeur */
+    max-width: none; /* Enlève la limite de largeur */
+    height: 15rem; /* Hauteur ajustée */
+  }
+
+  .moviedetail__year,
+  .moviedetail__length {
+    font-size: 0.9rem; /* Réduit la taille des éléments année/longueur */
+    padding: 0.4rem;
+  }
+
+  .moviedetail__elements {
+    font-size: 1rem;
+  }
+}
