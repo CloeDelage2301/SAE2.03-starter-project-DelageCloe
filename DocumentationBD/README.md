@@ -94,5 +94,5 @@ J'ai relié les tables category et Movie par le verbe Catégoriser car :
 - Un film peut etre catégorisé par une seule catégorie.
 
 J'ai les tables Movie et Profils par le verbe Filtrer car  : 
-- Un film peut etre filtrer celon l'age par 0 à n profils.
-- Un profil celon son age peut accéder à 0 à n films.
+- Un film peut etre filtrer selon l'age par 0 à n profils.
+- Un profil selon son age peut accéder à 0 à n films.
